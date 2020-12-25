@@ -10,4 +10,4 @@ COPY logger ./logger
 COPY config ./config
 COPY main.py ./
 
-CMD ["python3", "main.py"]
+CMD "python3 main.py"
