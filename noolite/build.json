@@ -1,0 +1,9 @@
+{
+    "build_from": {
+      "aarch64": "python:3.8-slim"
+    },
+    "squash": false,
+    "args": {
+      "my_build_arg": "xy"
+    }
+  }

@@ -1,0 +1,6 @@
+- ch: 11
+  name: Прихожая
+  device_class: motion
+- ch: 18
+  name: Бар
+  long: true

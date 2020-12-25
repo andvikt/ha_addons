@@ -1,0 +1,12 @@
+{
+    "name": "Noolite",
+    "version": "1",
+    "slug": "noolite",
+    "description": "Noolite integration",
+    "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
+    "startup": "application",
+    "boot": "auto",
+    "options": {},
+    "schema": {},
+    "image": "andvikt/noolite:0.1-aarch64"
+  }
