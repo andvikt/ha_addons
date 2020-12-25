@@ -8,5 +8,5 @@
     "boot": "auto",
     "options": {},
     "schema": {},
-    "image": "andvikt/noolite:0.1-aarch64"
+    "image": "andvikt/noolite"
   }
