@@ -8,5 +8,8 @@
     "boot": "auto",
     "options": {},
     "schema": {},
-    "image": "andvikt/noolite"
+    "image": "andvikt/noolite",
+    "devices":[
+      "/dev/ttyAMA0:/dev/serial0:rwm"
+    ]
   }
