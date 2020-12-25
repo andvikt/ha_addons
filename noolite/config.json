@@ -1,6 +1,6 @@
 {
     "name": "Noolite",
-    "version": "3",
+    "version": "4",
     "slug": "noolite",
     "description": "Noolite integration",
     "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
@@ -9,7 +9,5 @@
     "options": {},
     "schema": {},
     "image": "andvikt/noolite",
-    "devices":[
-      "/dev/ttyAMA0:/dev/serial0:rwm"
-    ]
+    "auto_uart": true
   }

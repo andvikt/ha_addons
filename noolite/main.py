@@ -36,7 +36,7 @@ RAW_RESPONSE = f'{PREFIX}/r/{{ch}}'
 RAW_SUBSCRIPTION = f'{PREFIX}/r/+/cmd'
 
 noolite = noo.Noolite(
-    tty_name='/dev/serial0',
+    tty_name='/dev/ttyAMA0',
     loop=loop
 )
 motions = {}
