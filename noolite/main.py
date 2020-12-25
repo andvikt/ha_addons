@@ -7,9 +7,10 @@ import noolite as noo
 import ujson
 import yaml
 from yaml.loader import FullLoader
-
+from logging import DEBUG
 
 lg = root_logger.getChild('noolite_mqtt')
+lg.setLevel(DEBUG)
 loop = asyncio.get_event_loop()
 
 DEFAULT_LIGHT_TIMEOUT = 12 * 60 * 60  # все команды на включение света должны выполняются в форме TEMPORARY_ON с
