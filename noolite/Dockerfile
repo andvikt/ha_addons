@@ -16,7 +16,5 @@ COPY noolite ./noolite
 COPY logger ./logger
 COPY config ./config
 COPY main.py ./
-COPY run.sh  ./
-RUN chmod +x run.sh
 
 CMD [ "python3", "main.py" ]
