@@ -12,7 +12,7 @@ import os
 
 
 loop = asyncio.get_event_loop()
-with open(os.environ['CONFIG_PATH']) as f:
+with open('/data/options.json') as f:
     cfg = ujson.load(f)
     print(str(cfg))
 
