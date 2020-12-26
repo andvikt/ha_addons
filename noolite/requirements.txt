@@ -1,7 +1,5 @@
 asyncio-mqtt
 pyserial
 pyyaml
-aiohttp
-xmltodict
 pydantic
 ujson

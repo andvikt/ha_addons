@@ -1,13 +1,43 @@
 {
     "name": "Noolite",
-    "version": "4",
+    "version": "5",
     "slug": "noolite",
     "description": "Noolite integration",
     "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
     "startup": "application",
     "boot": "auto",
-    "options": {},
-    "schema": {},
+    "options": {
+      "serial_port": "/dev/ttyS0",
+      "mqtt_host": "core-mosquitto",
+      "mqtt_user": "mqtt",
+      "mqtt_password": "",
+      "mqtt_prefix": "noolite",
+      "lights": [
+        {"ch": 54, "name": "Living room"},
+        {"ch": 62, "name": "Some dimmer", "brightness": true}
+        
+      ],
+      "motion": [
+        {"ch": 15, "name": "Some motion"}
+      ],
+      "log_level": "INFO"
+    },
+    "schema": {
+      "serial_port": "str",
+      "mqtt_host": "str",
+      "mqtt_user": "str",
+      "mqtt_password": "str",
+      "mqtt_prefix": "str",
+      "lights": [
+        {"ch": "int(0, 63)", "name": "str"},
+        {"ch": "int(0, 63)", "name": "str", "brightness": "bool"}
+        
+      ],
+      "motion": [
+        {"ch": "int", "name": "str"}
+      ],
+      "log_level": "str"
+    },
     "image": "andvikt/noolite",
     "auto_uart": true
   }

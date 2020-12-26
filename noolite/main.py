@@ -8,14 +8,20 @@ import ujson
 import yaml
 from yaml.loader import FullLoader
 from logging import DEBUG
+import os
+
+
+loop = asyncio.get_event_loop()
+with open(os.environ['CONFIG_PATH']) as f:
+    cfg = ujson.load(f)
+    print(str(cfg))
 
 lg = root_logger.getChild('noolite_mqtt')
-lg.setLevel(DEBUG)
-loop = asyncio.get_event_loop()
+lg.setLevel(cfg['log_level'])
 
 DEFAULT_LIGHT_TIMEOUT = 12 * 60 * 60  # все команды на включение света должны выполняются в форме TEMPORARY_ON с
 # дефолтным временем 12 часов на случай если кто-то забыл выключить свет он гарантировано выключится через 12 часов
-PREFIX = 'noo1'
+PREFIX = cfg['mqtt_prefix']
 HA_PREFIX = f'homeassistant/{PREFIX}'
 ERR_PREFIX = f'{PREFIX}/err'
 ONLINE_TOPIC = f'{HA_PREFIX}/online'
@@ -24,9 +30,9 @@ OFFLINE = dict(
     payload='offline',
 )
 MQTT_CONF = {
-    'hostname': '192.168.88.100',
-    'username': 'mqtt',
-    'password': 'wavemp3',
+    'hostname': cfg['mqtt_host'],
+    'username': cfg['mqtt_user'],
+    'password': cfg['mqtt_password'],
     'will': Will(**OFFLINE)
 }
 RECONNECT_TIME = 10
@@ -36,7 +42,7 @@ RAW_RESPONSE = f'{PREFIX}/r/{{ch}}'
 RAW_SUBSCRIPTION = f'{PREFIX}/r/+/cmd'
 
 noolite = noo.Noolite(
-    tty_name='/dev/ttyAMA0',
+    tty_name=cfg['serial_port'],
     loop=loop
 )
 motions = {}
@@ -77,8 +83,7 @@ def parse_raw(msg):
 
 
 def get_lights():
-    with open('config/devices.yml') as f:
-        devices = yaml.load(f, Loader=FullLoader)
+    devices = cfg['lights']
     for value in devices:
         ch = value.pop('ch')
         if value.get('brightness'):
@@ -97,8 +102,7 @@ def get_lights():
 
 
 def get_motions():
-    with open('config/motions.yml') as f:
-        devices = yaml.load(f, Loader=FullLoader)
+    devices = cfg['motion']
     for value in devices:
         ch = value.pop('ch')
         state_topic = f'{PREFIX}/m/{ch}'
