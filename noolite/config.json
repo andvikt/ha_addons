@@ -1,6 +1,6 @@
 {
     "name": "Noolite",
-    "version": "5",
+    "version": "6",
     "slug": "noolite",
     "description": "Noolite integration",
     "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
@@ -29,8 +29,8 @@
       "mqtt_password": "str",
       "mqtt_prefix": "str",
       "lights": [
-        {"ch": "int(0, 63)", "name": "str"},
-        {"ch": "int(0, 63)", "name": "str", "brightness": "bool"}
+        {"ch": "int(0,63)", "name": "str"},
+        {"ch": "int(0,63)", "name": "str", "brightness": "bool"}
         
       ],
       "motion": [
