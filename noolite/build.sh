@@ -1,3 +1,4 @@
+set -e
 docker run --rm -ti --name hassio-builder --privileged \
   -v /home/andvikt/projects/ha_addons/noolite:/data \
   -v /var/run/docker.sock:/var/run/docker.sock:ro \
@@ -8,3 +9,7 @@ docker run --rm -ti --name hassio-builder --privileged \
   --no-crossbuild-cleanup \
   --docker-user andvikt \
   --docker-password $DOCKER_PWD
+
+docker push andvikt/noolite
+git commit . -m "new version"
+git push
