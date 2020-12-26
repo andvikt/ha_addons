@@ -2,4 +2,3 @@ asyncio-mqtt
 pyserial
 pyyaml
 pydantic
-ujson

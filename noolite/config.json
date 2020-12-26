@@ -1,6 +1,6 @@
 {
     "name": "Noolite",
-    "version": "8",
+    "version": "8.2",
     "slug": "noolite",
     "description": "Noolite integration",
     "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],

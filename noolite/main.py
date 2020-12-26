@@ -4,7 +4,7 @@ from asyncio_mqtt import client as ac
 from asyncio_mqtt import Client, Will
 from logger import root_logger
 import noolite as noo
-import ujson
+import json
 import yaml
 from yaml.loader import FullLoader
 from logging import DEBUG
@@ -13,7 +13,7 @@ import os
 
 loop = asyncio.get_event_loop()
 with open('/data/options.json') as f:
-    cfg = ujson.load(f)
+    cfg = json.load(f)
     print(str(cfg))
 
 lg = root_logger.getChild('noolite_mqtt')
@@ -51,7 +51,7 @@ motions = {}
 def parse_msg(msg):
     payload = msg.payload
     ch = int(msg.topic.split('/')[-2])
-    data = ujson.loads(payload)
+    data = json.loads(payload)
     lg.debug(data)
     if 'brightness' in data:
         yield noo.NooliteCommand.make_command(
@@ -76,7 +76,7 @@ def parse_msg(msg):
 def parse_raw(msg):
     payload = msg.payload
     ch = int(msg.topic.split('/')[-2])
-    data = ujson.loads(payload)
+    data = json.loads(payload)
     data['ch'] = ch
     cmd = noo.MqttCommand(**data)
     yield noo.NooliteCommand.make_command(**cmd.dict())
@@ -134,13 +134,13 @@ async def announce(client: ac.Client):
         lg.debug('announce: %s', cfg)
         await client.publish(
             topic=f'homeassistant/light/{id}/config',
-            payload=ujson.dumps(cfg),
+            payload=json.dumps(cfg),
         )
     for id, cfg in get_motions():
         lg.debug('announce: %s', cfg)
         await client.publish(
             topic=f'homeassistant/binary_sensor/{id}/config',
-            payload=ujson.dumps(cfg),
+            payload=json.dumps(cfg),
         )
 
 
